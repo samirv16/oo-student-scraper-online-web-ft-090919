@@ -10,7 +10,8 @@ class Scraper
       student_details = {
       name: student.css(".student-name").text
       location: student.css(".student-location").text
-      profile_url: student.attr("href")
+      profile_url: "http://students.learn.co/" + attribute.
+      # student.attr("href")
       }
       students << student_details
     end
