@@ -24,7 +24,7 @@ class Scraper
     
     social.each do |attributes|
       {
-        
+        :twitter => 
       }
     
     if 
