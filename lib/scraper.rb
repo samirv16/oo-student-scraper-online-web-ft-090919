@@ -18,26 +18,27 @@ class Scraper
   
   
   def self.scrape_profile_page(profile_url)
-    html = open(profile_url)
-    doc = Nokogiri::HTML(html)
-    student_hash = {}
-    social = doc.css(".vitals-container .social-icon-container a")
-    
-    social.each do |element|
-     if element.attr("href").include?("twitter") 
-       student_hash[:twitter] = element.attr("href")
-     elsif element.attr("href").include?("linkedin") 
-       student_hash[:linkedin] = element.attr("href")
-     elsif element.attr("href").include?("github") 
-       student_hash[:github] = element.attr("href")
-     elsif element.attr("href").include?(".com/") 
-       student_hash[:blog] = element.attr("href")
-    end 
+      html = open(profile_url)
+      doc = Nokogiri::HTML(html)
+      return_hash = {}
+
+        social = doc.css(".vitals-container .social-icon-container a")
+        social.each do |element|
+          if element.attr('href').include?("twitter")
+            return_hash[:twitter] = element.attr('href')
+          elsif element.attr('href').include?("linkedin")
+            return_hash[:linkedin] = element.attr('href')
+          elsif element.attr('href').include?("github")
+            return_hash[:github] = element.attr('href')
+          elsif element.attr('href').include?(".com/")
+            return_hash[:blog] = element.attr('href')
+          end
+        end
+        return_hash[:profile_quote] = doc.css(".vitals-container .vitals-text-container .profile-quote").text
+        return_hash[:bio] = doc.css(".bio-block.details-block .bio-content.content-holder .description-holder p").text
+
+    return_hash
     end
-      student_hash[:profile_quote] = doc.css(".vitals-container .vitals-text-container .profile_quote").text
-      student_hash[:bio] = doc.css(".details-container .bio-block.details-block .bio-content.content-holder .description-holder p").text
-      return student_hash
-  end
 
 
 end
