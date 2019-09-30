@@ -14,7 +14,6 @@ class Scraper
       :profile_url = student.attr("href")
       }
       students << student_details
-      
     end
     students
   end
