@@ -26,7 +26,13 @@ class Scraper
     social.each do |element|
      if element.attr("href").include?("twitter") 
        student_hash[:twitter] = element.attr("href")
-   
+     elsif element.attr("href").include?("linkedin") 
+       student_hash[:linkedin] = element.attr("href")
+     elsif element.attr("href").include?("github") 
+       student_hash[:github] = element.attr("href")
+     elsif element.attr("href").include?(".com/") 
+       student_hash[:blog] = element.attr("href")
+    end 
       
   end
     
