@@ -33,7 +33,7 @@ class Scraper
      elsif element.attr("href").include?(".com/") 
        student_hash[:blog] = element.attr("href")
     end 
-      student_hash[:profile_quote] = 
+      student_hash[:profile_quote] = doc.css()
   end
     
 
